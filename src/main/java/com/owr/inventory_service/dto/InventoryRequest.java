@@ -1,6 +1,6 @@
 package com.owr.inventory_service.dto;
 
-
+import java.time.Instant;
 /*=================================================================================
  * Project: inventory-service
  * File: InventoryRequest
@@ -10,18 +10,16 @@ package com.owr.inventory_service.dto;
  * optional rack and warehouse metadata.
  =================================================================================*/
 
-import java.time.Instant;
-
 /**
  * Accepts detailed inventory data from clients, including product ID, quantity, rack location, warehouse name, and
  * timestamp for accurate stock management and traceability.
  * *******************************************************
  */
 
-public class InventoryRequest {
-    Long productId;
-    int quantity;
-    String rack;
-    String warehouse;
-    Instant lastUpdated;
+public record InventoryRequest (
+    Long productId, int quantity,
+    String rack, String warehouse,
+    Instant lastUpdated
+){
+
 }

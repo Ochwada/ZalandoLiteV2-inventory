@@ -46,12 +46,14 @@ some *Unique Dependencies* for this service are:
 ![img.png](assets/img.png)
 
 ## API Endpoints
-| Method | Endpoint                     | Description                                 |
-|--------|------------------------------|---------------------------------------------|
-| GET    | `/api/inventory/{productId}` | Retrieves current stock level for a product |
-| POST   | `/api/inventory`             | Creates or updates the stock for a product  |
-| GET    | `/api/inventory`             | Get all inventory records                   |
+| Method | Endpoint                          | Description                                               |
+|--------|-----------------------------------|-----------------------------------------------------------|
+| GET    | `/api/inventory/{productId}`      | Retrieves current stock level for a product               |
+| POST   | `/api/inventory`                  | Creates or updates the stock for a product                |
+| GET    | `/api/inventory`                  | Get all inventory records                                 |
+| GET    | `/api/inventory?warehouse=Berlin` | Retrieves all inventory records for a specific warehouse. |
 
+GET 
 ###  Inventory Document (MongoDB)
 ```yaml
 {

@@ -16,6 +16,13 @@ import java.util.Optional;
  =================================================================================*/
 public interface InventoryRepository extends MongoRepository<Inventory, String> {
 
+    /**
+     * provide built-in CRUD methods like:
+     * - findAll()
+     * - findById()
+     * - save() // create
+     * - deleteById()
+     * */
     /**-------------------------------------------------------
      * Custom Queries
      --------------------------------------------------------*/
