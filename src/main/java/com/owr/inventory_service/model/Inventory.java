@@ -37,7 +37,7 @@ public class Inventory {
     private  Long productId;
 
     /** Location of the product in the warehouse*/
-    private String rank;
+    private String rack;
 
     /** Location of the warehouse*/
     private String warehouse;
