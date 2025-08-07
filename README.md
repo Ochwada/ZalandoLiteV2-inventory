@@ -48,9 +48,9 @@ some *Unique Dependencies* for this service are:
 ## API Endpoints
 | Method | Endpoint                          | Description                                               |
 |--------|-----------------------------------|-----------------------------------------------------------|
-| GET    | `/api/inventory/{productId}`      | Retrieves current stock level for a product               |
 | POST   | `/api/inventory`                  | Creates or updates the stock for a product                |
 | GET    | `/api/inventory`                  | Get all inventory records                                 |
+| GET    | `/api/inventory/{productId}`      | Retrieves current stock level for a product               |
 | GET    | `/api/inventory?warehouse=Berlin` | Retrieves all inventory records for a specific warehouse. |
 
 GET 
@@ -69,3 +69,18 @@ GET
 - **Product Service**: Checks inventory before displaying product availability. 
 - **Order Service**: Validates and reserves stock during order placement. 
 - **Notification Service**: (feature development) Sends low-stock alerts or restock confirmations.
+
+### Test Results
+
+- Creates or updates the stock for a product
+
+  ![img.png](assets/img_.png)
+
+- Retrieves all inventory records in the system
+![img_1.png](assets/img_1.png)
+
+- Retrieves current stock level for a product
+![img_2.png](assets/img_2.png)
+
+- Retrieves all inventory records for a SPECIFIC warehouse. 
+![img_3.png](assets/img_3.png)

@@ -33,7 +33,7 @@ public interface InventoryRepository extends MongoRepository<Inventory, String> 
      * @param productId the ID of the product
      * @return an optional inventory record
      */
-    Optional<Inventory>  findProductById(Long productId);
+    Optional<Inventory> findByProductId(Long productId);
 
     /**
      * Retrieves all inventory records located in the specified warehouse.

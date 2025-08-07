@@ -5,7 +5,6 @@ import com.owr.inventory_service.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class InventoryService {
 
-    private InventoryRepository repository;
+    private final InventoryRepository repository;
 
     /**
      * Retrieves the current stock quantity for a given product.
@@ -33,7 +32,7 @@ public class InventoryService {
      * returns {@code 0} if the product is not found
      */
     public int getStock(Long productId) {
-        Optional<Inventory> inventory = repository.findProductById(productId);
+        Optional<Inventory> inventory = repository.findByProductId(productId);
 
         return inventory
                 .map(Inventory::getQuantity)
@@ -48,6 +47,15 @@ public class InventoryService {
      */
     public List<Inventory> getInventories(String warehouse) {
         return repository.findByWarehouse(warehouse);
+    }
+
+    /**
+     * Retrieves all inventory records .
+     *
+     * @return a list of inventory records found .
+     */
+    public List<Inventory> getAllInventories() {
+        return repository.findAll();
     }
 
 
@@ -66,31 +74,32 @@ public class InventoryService {
             Long productId, int quantity,
             String rack, String warehouse) {
 
-        Inventory inventory = repository.findProductById(productId)
+        Inventory inventory = repository.findByProductId(productId)
                 .orElse(new Inventory());
 
         inventory.setProductId(productId);
 
-        // Only update quantity if it's different
-        if (quantity >= 0 && inventory.getQuantity() != quantity) {
+        // Always update quantity if non-negative
+        if (quantity >= 0 ) {
             inventory.setQuantity(quantity);
         }
 
-        // Only update rack if provided and different
-        if (rack != null
-                && !rack.isBlank()
-                && (inventory.getRack() == null
-                || !inventory.getRack().equals(rack))) {
-            inventory.setRack(rack);
+        // Always set rack if it's null or changed
+        if (rack != null && !rack.isBlank()) {
+            if (inventory.getRack() == null
+                    || !inventory.getRack().equals(rack)) {
+
+                inventory.setRack(rack);
+            }
         }
 
-        // Only update warehouse if provided and different
-        if (warehouse != null
-                && !warehouse.isBlank()
-                && (inventory.getWarehouse() == null
-                || !inventory.getWarehouse().equals(warehouse))) {
+        // Always set warehouse if it's null or changed
+        if (warehouse != null && !warehouse.isBlank()) {
+            if (inventory.getWarehouse() == null
+                    || !inventory.getWarehouse().equals(warehouse)) {
 
-            inventory.setWarehouse(warehouse);
+                inventory.setWarehouse(warehouse);
+            }
         }
 
         repository.save(inventory);

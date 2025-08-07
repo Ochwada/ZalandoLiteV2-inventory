@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,7 @@ import java.time.LocalDateTime;
  *   "lastUpdated": "2025-08-07T15:20:00Z"
  *   */
 
-@Document(collation = "inventories")
+@Document(collection = "inventories")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -34,6 +35,7 @@ public class Inventory {
     private  String id;
 
     /** ID of the product (comes from the product-service)*/
+    @Indexed(unique = true)
     private  Long productId;
 
     /** Location of the product in the warehouse*/
