@@ -1,5 +1,6 @@
 #  📦 ZalandoLite V2 -Inventory
 
+
 ---
 
 ###   🔗 [ZalandoLite V2  🍀 Overview Repository ](https://github.com/Ochwada/ZalandoLiteV2-MicroservicesArchitecture)
@@ -7,8 +8,9 @@ Microservices ⬇️ part of **ZalandoLite V2**
 #### 🖇️ [Microservice 1: Authentication Service](https://github.com/Ochwada/ZalandoLiteV2-authentication)
 #### 🖇️ [Microservice 2: Product Service](https://github.com/reyhanovelek/ZalandoLiteV2-Product)
 #### 🖇️ [Microservice 3: Inventory Service](https://github.com/Ochwada/ZalandoLiteV2-inventory)
+#### 🖇️ [Microservice 5: Order Service](https://github.com/Ochwada/ZalandoLiteV2-order)
 
----
+--- 
 ##  About Inventory Service
 The **Inventory Service** is a core component of the ZalandoLite V2 backend system, responsible for managing and tracking 
 product stock levels. It maintains an up-to-date record of inventory for each product and exposes a set of RESTful 
@@ -53,8 +55,18 @@ some *Unique Dependencies* for this service are:
 | GET    | `/api/inventory/{productId}`      | Retrieves current stock level for a product               |
 | GET    | `/api/inventory?warehouse=Berlin` | Retrieves all inventory records for a specific warehouse. |
 
-GET 
+http://localhost:8587/api/inventory
+
 ###  Inventory Document (MongoDB)
+
+```yaml
+{
+  "productId": "1",
+  "quantity": 100,
+  "rack": "A1-B5",
+  "warehouse": "Berlin Central"
+}
+```
 ```yaml
 {
   "productId": "123456789",
